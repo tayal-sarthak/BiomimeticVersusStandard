@@ -15,7 +15,7 @@ class KANC_MLP(nn.Module):
             grid_size = grid_size
         )
 
-        # second kan convolutional layer
+        ## second kan convolutional layer
         self.conv2 = KAN_Convolutional_Layer(in_channels=5,
             out_channels= 5,
             kernel_size = (3,3),

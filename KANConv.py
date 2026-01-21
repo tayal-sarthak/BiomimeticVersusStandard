@@ -1,12 +1,12 @@
 import torch
 import math
 import sys
-sys.path.append('./kan_convolutional') # path for kan_convolutional module
+sys.path.append('./kan_convolutional') ## path for kan_convolutional
 from KANLinear import KANLinear
 import convolution
 
 
-# kan convolutional layer implementation
+## im implementing kan convolutional layer
 class KAN_Convolutional_Layer(torch.nn.Module):
     def __init__(
             self,
@@ -77,7 +77,7 @@ class KAN_Convolutional_Layer(torch.nn.Module):
                     base_activation=base_activation,
                     grid_eps=grid_eps,
                     grid_range=grid_range,
-                    # device allocation as per input device for pytorch ddp
+
                 )
             )
 
@@ -115,7 +115,7 @@ class KAN_Convolution(torch.nn.Module):
         self.stride = stride
         self.padding = padding
         self.dilation = dilation
-        # device for pytorch ddp
+        ## device for pytorch ddp
         self.conv = KANLinear(
             in_features = math.prod(kernel_size),
             out_features = 1,

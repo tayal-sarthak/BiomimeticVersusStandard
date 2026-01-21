@@ -21,35 +21,28 @@ def multiple_convs_kan_conv2d(matrix, # input tensor
              padding= (0, 0),
              device= "cuda"
              ) -> torch.Tensor:
-    """2d convolution with kan kernels.
+    h_out, w_out, batch_size, n_channels = calc_out_dims(matrix, kernel_side, stride, dilation, padding)
 
-    args:
-        matrix: input data (batch, channels, height, width).
-        kernels: kan convolution kernels.
-        kernel_side: kernel size (square).
-        out_channels: number of output channels.
-        stride: movement step for kernel.
-        dilation: spacing between kernel elements.
-        padding: border added to input.
-        device: cpu or cuda.
+    # Always allocate on the same device/dtype as the input.
+    # (Avoids extra device transfers and helps prevent async CUDA errors.)
+    device = matrix.device
+    matrix_out = torch.zeros((batch_size, out_channels, h_out, w_out), device=device, dtype=matrix.dtype)
 
-    returns:
-        feature map after convolution.
-    """
-    h_out, w_out,batch_size,n_channels = calc_out_dims(matrix, kernel_side, stride, dilation, padding)
-    n_convs = len(kernels)
-    matrix_out = torch.zeros((batch_size,out_channels,h_out,w_out)).to(device)# assuming no rgb dimension
-    unfold = torch.nn.Unfold((kernel_side,kernel_side), dilation=dilation, padding=padding, stride=stride)
-    conv_groups = unfold(matrix[:,:,:,:]).view(batch_size, n_channels,  kernel_side*kernel_side, h_out*w_out).transpose(2, 3)
+    unfold = torch.nn.Unfold((kernel_side, kernel_side), dilation=dilation, padding=padding, stride=stride)
+    # unfold: (batch, n_channels * k*k, h_out*w_out)
+    # reshape to (batch, n_channels, h_out*w_out, k*k)
+    conv_groups = unfold(matrix).reshape(batch_size, n_channels, kernel_side * kernel_side, h_out * w_out).transpose(2, 3)
     # each output channel
     kern_per_out = len(kernels)//out_channels
     for c_out in range(out_channels):
-        out_channel_accum = torch.zeros((batch_size, h_out, w_out), device=device)
+        out_channel_accum = torch.zeros((batch_size, h_out, w_out), device=device, dtype=matrix.dtype)
 
         # combine kernel outputs for this channel
         for k_idx in range(kern_per_out):
             kernel = kernels[c_out * kern_per_out + k_idx]
-            conv_result = kernel.conv.forward(conv_groups[:, k_idx, :, :].flatten(0, 1))  # apply kan kernel
+            # Ensure contiguous patch tensor before feeding into KANLinear.
+            patches = conv_groups[:, k_idx, :, :].contiguous().view(-1, kernel_side * kernel_side)
+            conv_result = kernel.conv(patches)  # apply kan kernel
             out_channel_accum += conv_result.view(batch_size, h_out, w_out)
 
         matrix_out[:, c_out, :, :] = out_channel_accum  # store results
@@ -57,15 +50,6 @@ def multiple_convs_kan_conv2d(matrix, # input tensor
     return matrix_out
 def add_padding(matrix: np.ndarray, 
                 padding: Tuple[int, int]) -> np.ndarray:
-    """add padding to matrix.
-
-    args:
-        matrix: input matrix.
-        padding: rows and columns to add.
-
-    returns:
-        padded matrix.
-    """
     n, m = matrix.shape
     r, c = padding
     

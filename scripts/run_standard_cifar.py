@@ -23,7 +23,6 @@ if project_folder is None:
     raise FileNotFoundError(
         "Could not locate 'KANConv.py'. Expected it in either the workspace root or in 'CKAN-Executions-main/'."
     )
-# ------------------
 
 import torch
 import torch.nn as nn
@@ -35,26 +34,26 @@ from KANConv import KAN_Convolutional_Layer
 class KANC_CIFAR(nn.Module):
     def __init__(self, grid_size=3, num_classes=10):
         super().__init__()
-        # block 1 (fixed padding)
+        ## block 1 setup
         self.conv1 = KAN_Convolutional_Layer(
             in_channels=3, out_channels=8, kernel_size=(3,3), padding=(1,1), grid_size=grid_size
         )
         self.pool1 = nn.MaxPool2d(kernel_size=(2,2))
         
-        # block 2 (fixed padding)
+        ## block 2 setup
         self.conv2 = KAN_Convolutional_Layer(
             in_channels=8, out_channels=16, kernel_size=(3,3), padding=(1,1), grid_size=grid_size
         )
         self.pool2 = nn.MaxPool2d(kernel_size=(2,2))
         
-        # block 3 (fixed padding)
+        ## block 3 setup
         self.conv3 = KAN_Convolutional_Layer(
             in_channels=16, out_channels=32, kernel_size=(3,3), padding=(1,1), grid_size=grid_size
         )
         self.pool3 = nn.MaxPool2d(kernel_size=(2,2))
         
         self.flat = nn.Flatten()
-        # 32 channels * 4 * 4 size = 512 inputs
+        ## 32 channels * 4 * 4 size = 512 inputs
         self.linear1 = nn.Linear(32 * 4 * 4, num_classes)
 
     def forward(self, x):
@@ -94,7 +93,7 @@ def main():
         model.train()
         total_loss = 0
         
-        # enumerate adds a counter 'i' so we can track batches
+        ## enumerating batches
         for i, (imgs, labels) in enumerate(loader):
             imgs = imgs.to(device)
             labels = labels.to(device)
@@ -107,7 +106,7 @@ def main():
             
             total_loss += loss.item()
 
-            # print heartbeat every 50 batches
+            ## printing every 50 batches
             if (i + 1) % 50 == 0:
                 print(f"epoch {epoch+1} | batch {i+1} | current loss: {round(loss.item(), 4)}")
         

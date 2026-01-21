@@ -6,7 +6,7 @@ def run_script(script_name):
     print(f"\n>>> STARTING: {script_name}")
     print("=" * 50)
     
-    # We use sys.executable to make sure it uses the same python that is running this script
+    ## using sys.executable to run with same python
     result = subprocess.run([sys.executable, f"scripts/{script_name}"])
     
     if result.returncode != 0:
@@ -21,13 +21,13 @@ def main():
     start_time = time.time()
     print("--- AUTOMATED TWIN EXPERIMENT STARTED ---\n")
 
-    # Step 1: Train Standard (Twin A)
+    ## step 1: training standard
     run_script("run_standard_cifar.py")
 
-    # Step 2: Train Biomimetic (Twin B)
+    ## step 2: training biomimetic
     run_script("run_biomimetic_cifar.py")
 
-    # Step 3: Compare Results
+    ## step 3: compare results
     run_script("evaluate_robustness.py")
 
     total_time = (time.time() - start_time) / 3600

@@ -679,3 +679,17 @@ WINNER: Biomimetic (Twin B)
 
 ALL DONE! The experiment took 12.57 hours.
 Check the results table above.
+
+
+Next antibiomimetic
+--- ROBUSTNESS EXAM RESULTS ---
+corruption      | standard   | biomimetic | anti-biomimetic
+---------------------------------------------
+snow            | 54.8%     | 58.6%     | 28.0%
+glass_blur      | 57.5%     | 60.9%     | 31.2%
+defocus_blur    | 59.2%     | 61.8%     | 35.3%
+fog             | 49.2%     | 49.1%     | 33.0%
+---------------------------------------------
+mean (4 corrupt) | 55.19%    | 57.61%    | 31.88%
+WINNER: Biomimetic (Twin B)
+PS D:\profProject\CKAN-Executions-main> 

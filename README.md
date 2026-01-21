@@ -1,6 +1,6 @@
 # CKAN Twin Experiment (CIFAR‑10)
 
-This repository is a small research “execution harness” for running a **Twin Experiment** with **Convolutional Kolmogorov‑Arnold Networks (CKANs / C‑KANs)**.
+This repository is a small project for running a **Twin Experiment** with **Convolutional Kolmogorov‑Arnold Networks (CKANs / C‑KANs)**.
 
 The idea is simple:
 
@@ -11,13 +11,14 @@ After training, both models are evaluated on **CIFAR‑10‑C** corruptions (sno
 
 ## What this repo actually does
 
-There are three scripts under `scripts/` that run the whole experiment end‑to‑end:
+There are four scripts under `scripts/` that run the whole experiment end‑to‑end:
 
 1. **Train Twin A:** `scripts/run_standard_cifar.py`
 2. **Train Twin B:** `scripts/run_biomimetic_cifar.py`
 3. **Evaluate both:** `scripts/evaluate_robustness.py`
+4. **Train Twin C (Anti-biomimetic / reverse curriculum):** `scripts/run_antibiomimetic_cifar.py`
 
-An optional orchestrator, `run_experiment.py`, runs all three back‑to‑back and stops immediately if any stage crashes.
+An optional orchestrator, `run_experiment.py`, runs the first 3 three back‑to‑back and stops immediately if any stage crashes.
 
 ### The biomimetic blur curriculum
 
@@ -40,6 +41,7 @@ This workspace is intentionally not a standard package. The code is loaded via `
   - saved checkpoints:
     - `data1/model_a_standard.pth`
     - `data1/model_b_biomimetic.pth`
+    - `data1/model_c_antibiomimetic.pth`
 
 ## How to run (Windows / overnight)
 
@@ -56,6 +58,7 @@ python run_experiment.py
 ```bash
 python scripts/run_standard_cifar.py
 python scripts/run_biomimetic_cifar.py
+python scripts/run_antibiomimetic_cifar.py
 python scripts/evaluate_robustness.py
 ```
 

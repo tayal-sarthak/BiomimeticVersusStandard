@@ -10,8 +10,8 @@ import time
 from KANConv import KAN_Convolutional_Layer
 
 
-# simple cifar kan runner
-# mps if available; small batch, no workers, 6h
+## i'm making a simple cifar kan runner
+## using mps if available; small batch, no workers, 6h
 
 
 class KANC_CIFAR(nn.Module):

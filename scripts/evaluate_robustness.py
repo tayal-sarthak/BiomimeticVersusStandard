@@ -22,9 +22,8 @@ for _p in _candidate_project_folders:
 
 if project_folder is None:
     raise FileNotFoundError(
-        "Could not locate 'KANConv.py'. Expected it in either the workspace root or in 'CKAN-Executions-main/'."
+        "Could not locate 'KANConv.py'. Expected it in either the workspace root or in CKAN-Executions-main."
     )
-# ------------------
 
 import torch
 import torch.nn as nn
@@ -125,6 +124,7 @@ def main():
     
     model_a_file = os.path.join(data_path, "model_a_standard.pth")
     model_b_file = os.path.join(data_path, "model_b_biomimetic.pth")
+    model_c_file = os.path.join(data_path, "model_c_antibiomimetic.pth")
     
     if not os.path.exists(cifar_c_path):
         print("ERROR: Could not find CIFAR-10-C folder at:", cifar_c_path)
@@ -138,10 +138,14 @@ def main():
 
     model_a = KANC_CIFAR(grid_size=3).to(device)
     model_b = KANC_CIFAR(grid_size=3).to(device)
+    model_c = None
 
     try:
         model_a.load_state_dict(torch.load(model_a_file, map_location=device), strict=True)
         model_b.load_state_dict(torch.load(model_b_file, map_location=device), strict=True)
+        if os.path.exists(model_c_file):
+            model_c = KANC_CIFAR(grid_size=3).to(device)
+            model_c.load_state_dict(torch.load(model_c_file, map_location=device), strict=True)
     except FileNotFoundError:
         print("ERROR: Could not find the trained model files in 'data1'.")
         print("Expected:", model_a_file)
@@ -154,33 +158,61 @@ def main():
     
     model_a.eval()
     model_b.eval()
+    if model_c is not None:
+        model_c.eval()
 
     tests = ['snow', 'glass_blur', 'defocus_blur', 'fog']
     
     print("\n--- ROBUSTNESS EXAM RESULTS ---")
-    print("corruption      | standard   | biomimetic")
+    if model_c is None:
+        print("corruption      | standard   | biomimetic")
+    else:
+        print("corruption      | standard   | biomimetic | anti-biomimetic")
     print("-" * 45)
 
     rows = []
     for c in tests:
         acc_a = evaluate(model_a, device, cifar_c_path, c)
         acc_b = evaluate(model_b, device, cifar_c_path, c)
-        rows.append((c, acc_a, acc_b))
+        if model_c is None:
+            rows.append((c, acc_a, acc_b))
+        else:
+            acc_c = evaluate(model_c, device, cifar_c_path, c)
+            rows.append((c, acc_a, acc_b, acc_c))
 
         name = c.ljust(15)
-        print(f"{name} | {round(acc_a, 1)}%     | {round(acc_b, 1)}%")
+        if model_c is None:
+            print(f"{name} | {round(acc_a, 1)}%     | {round(acc_b, 1)}%")
+        else:
+            print(f"{name} | {round(acc_a, 1)}%     | {round(acc_b, 1)}%     | {round(acc_c, 1)}%")
 
     mean_a = sum(r[1] for r in rows) / len(rows)
     mean_b = sum(r[2] for r in rows) / len(rows)
+    mean_c = None
+    if model_c is not None:
+        mean_c = sum(r[3] for r in rows) / len(rows)
     print("-" * 45)
-    print(f"mean (4 corrupt) | {round(mean_a, 2)}%    | {round(mean_b, 2)}%")
-
-    if mean_a > mean_b:
-        winner = "Standard (Twin A)"
-    elif mean_b > mean_a:
-        winner = "Biomimetic (Twin B)"
+    if model_c is None:
+        print(f"mean (4 corrupt) | {round(mean_a, 2)}%    | {round(mean_b, 2)}%")
     else:
-        winner = "Tie"
+        print(f"mean (4 corrupt) | {round(mean_a, 2)}%    | {round(mean_b, 2)}%    | {round(mean_c, 2)}%")
+
+    if model_c is None:
+        if mean_a > mean_b:
+            winner = "Standard (Twin A)"
+        elif mean_b > mean_a:
+            winner = "Biomimetic (Twin B)"
+        else:
+            winner = "Tie"
+    else:
+        means = {
+            "Standard (Twin A)": mean_a,
+            "Biomimetic (Twin B)": mean_b,
+            "Anti-biomimetic (Twin C)": mean_c,
+        }
+        max_mean = max(means.values())
+        winners = [k for k, v in means.items() if v == max_mean]
+        winner = winners[0] if len(winners) == 1 else "Tie"
 
     print("WINNER:", winner)
 
