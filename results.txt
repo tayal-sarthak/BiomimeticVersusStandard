@@ -682,6 +682,7 @@ Check the results table above.
 
 
 Next antibiomimetic
+
 --- ROBUSTNESS EXAM RESULTS ---
 corruption      | standard   | biomimetic | anti-biomimetic
 ---------------------------------------------
@@ -693,3 +694,275 @@ fog             | 49.2%     | 49.1%     | 33.0%
 mean (4 corrupt) | 55.19%    | 57.61%    | 31.88%
 WINNER: Biomimetic (Twin B)
 PS D:\profProject\CKAN-Executions-main> 
+
+Unlearning
+
+
+--- UNLEARNING PROGRESS ---
+epoch=0 | sigma=0.000 | clean=64.43% | c10c_mean_4=57.61%
+corruption      | acc
+----------------------------
+snow            | 58.6%
+glass_blur      | 60.9%
+defocus_blur    | 61.8%
+fog             | 49.1%
+epoch 1 | batch 200 | loss: 0.5280 | sigma=0.000
+epoch 1 | batch 400 | loss: 0.5898 | sigma=0.000
+epoch 1 | batch 600 | loss: 0.6607 | sigma=0.000
+--- EPOCH 1 FINISHED | AVG LOSS: 0.6750 | sigma=0.000 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=1 | sigma=0.000 | clean=65.78% | c10c_mean_4=58.00%
+corruption      | acc
+----------------------------
+snow            | 58.9%
+glass_blur      | 61.6%
+defocus_blur    | 62.9%
+fog             | 48.6%
+epoch 2 | batch 200 | loss: 0.6249 | sigma=0.200
+epoch 2 | batch 400 | loss: 0.7637 | sigma=0.200
+epoch 2 | batch 600 | loss: 0.6319 | sigma=0.200
+--- EPOCH 2 FINISHED | AVG LOSS: 0.6623 | sigma=0.200 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=2 | sigma=0.200 | clean=65.69% | c10c_mean_4=58.13%
+corruption      | acc
+----------------------------
+snow            | 59.0%
+glass_blur      | 62.0%
+defocus_blur    | 62.8%
+fog             | 48.6%
+epoch 3 | batch 200 | loss: 0.6109 | sigma=0.400
+epoch 3 | batch 400 | loss: 0.4950 | sigma=0.400
+epoch 3 | batch 600 | loss: 0.6368 | sigma=0.400
+--- EPOCH 3 FINISHED | AVG LOSS: 0.6648 | sigma=0.400 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=3 | sigma=0.400 | clean=65.53% | c10c_mean_4=58.37%
+corruption      | acc
+----------------------------
+snow            | 58.3%
+glass_blur      | 61.8%
+defocus_blur    | 63.1%
+fog             | 50.2%
+epoch 4 | batch 200 | loss: 0.8272 | sigma=0.600
+epoch 4 | batch 400 | loss: 0.5690 | sigma=0.600
+epoch 4 | batch 600 | loss: 0.7507 | sigma=0.600
+--- EPOCH 4 FINISHED | AVG LOSS: 0.7146 | sigma=0.600 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=4 | sigma=0.600 | clean=64.00% | c10c_mean_4=58.82%
+corruption      | acc
+----------------------------
+snow            | 55.9%
+glass_blur      | 60.0%
+defocus_blur    | 65.0%
+fog             | 54.3%
+epoch 5 | batch 200 | loss: 0.7880 | sigma=0.800
+epoch 5 | batch 400 | loss: 0.4984 | sigma=0.800
+epoch 5 | batch 600 | loss: 0.7399 | sigma=0.800
+--- EPOCH 5 FINISHED | AVG LOSS: 0.7623 | sigma=0.800 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=5 | sigma=0.800 | clean=60.37% | c10c_mean_4=56.80%
+corruption      | acc
+----------------------------
+snow            | 50.9%
+glass_blur      | 57.3%
+defocus_blur    | 64.0%
+fog             | 54.9%
+epoch 6 | batch 200 | loss: 1.0023 | sigma=1.000
+epoch 6 | batch 400 | loss: 0.8404 | sigma=1.000
+epoch 6 | batch 600 | loss: 0.8824 | sigma=1.000
+--- EPOCH 6 FINISHED | AVG LOSS: 0.8001 | sigma=1.000 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=6 | sigma=1.000 | clean=58.01% | c10c_mean_4=55.57%
+corruption      | acc
+----------------------------
+snow            | 48.0%
+glass_blur      | 55.5%
+defocus_blur    | 63.0%
+fog             | 55.7%
+epoch 7 | batch 200 | loss: 0.9035 | sigma=1.200
+epoch 7 | batch 400 | loss: 0.9388 | sigma=1.200
+epoch 7 | batch 600 | loss: 0.8443 | sigma=1.200
+--- EPOCH 7 FINISHED | AVG LOSS: 0.8283 | sigma=1.200 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=7 | sigma=1.200 | clean=55.46% | c10c_mean_4=53.40%
+corruption      | acc
+----------------------------
+snow            | 45.4%
+glass_blur      | 53.0%
+defocus_blur    | 61.2%
+fog             | 54.0%
+epoch 8 | batch 200 | loss: 0.7971 | sigma=1.400
+epoch 8 | batch 400 | loss: 0.9686 | sigma=1.400
+epoch 8 | batch 600 | loss: 0.8635 | sigma=1.400
+--- EPOCH 8 FINISHED | AVG LOSS: 0.8793 | sigma=1.400 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=8 | sigma=1.400 | clean=52.26% | c10c_mean_4=50.73%
+corruption      | acc
+----------------------------
+snow            | 42.0%
+glass_blur      | 49.8%
+defocus_blur    | 58.5%
+fog             | 52.6%
+epoch 9 | batch 200 | loss: 1.0212 | sigma=1.600
+epoch 9 | batch 400 | loss: 0.8970 | sigma=1.600
+epoch 9 | batch 600 | loss: 1.0470 | sigma=1.600
+--- EPOCH 9 FINISHED | AVG LOSS: 0.9066 | sigma=1.600 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=9 | sigma=1.600 | clean=51.79% | c10c_mean_4=50.66%
+corruption      | acc
+----------------------------
+snow            | 41.3%
+glass_blur      | 49.8%
+defocus_blur    | 58.4%
+fog             | 53.1%
+epoch 10 | batch 200 | loss: 1.0731 | sigma=1.800
+epoch 10 | batch 400 | loss: 0.9821 | sigma=1.800
+epoch 10 | batch 600 | loss: 0.8834 | sigma=1.800
+--- EPOCH 10 FINISHED | AVG LOSS: 0.9492 | sigma=1.800 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=10 | sigma=1.800 | clean=49.01% | c10c_mean_4=48.51%
+corruption      | acc
+----------------------------
+snow            | 39.1%
+glass_blur      | 47.8%
+defocus_blur    | 55.6%
+fog             | 51.5%
+epoch 11 | batch 200 | loss: 0.9345 | sigma=2.000
+epoch 11 | batch 400 | loss: 0.9785 | sigma=2.000
+epoch 11 | batch 600 | loss: 0.9611 | sigma=2.000
+--- EPOCH 11 FINISHED | AVG LOSS: 0.9736 | sigma=2.000 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=11 | sigma=2.000 | clean=48.74% | c10c_mean_4=47.70%
+corruption      | acc
+----------------------------
+snow            | 38.3%
+glass_blur      | 47.1%
+defocus_blur    | 55.3%
+fog             | 50.1%
+epoch 12 | batch 200 | loss: 0.7711 | sigma=2.200
+epoch 12 | batch 400 | loss: 1.2307 | sigma=2.200
+epoch 12 | batch 600 | loss: 0.9969 | sigma=2.200
+--- EPOCH 12 FINISHED | AVG LOSS: 0.9947 | sigma=2.200 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=12 | sigma=2.200 | clean=47.41% | c10c_mean_4=46.35%
+corruption      | acc
+----------------------------
+snow            | 37.1%
+glass_blur      | 46.1%
+defocus_blur    | 53.2%
+fog             | 49.0%
+epoch 13 | batch 200 | loss: 1.3137 | sigma=2.400
+epoch 13 | batch 400 | loss: 0.9458 | sigma=2.400
+epoch 13 | batch 600 | loss: 1.0216 | sigma=2.400
+--- EPOCH 13 FINISHED | AVG LOSS: 1.0354 | sigma=2.400 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=13 | sigma=2.400 | clean=45.88% | c10c_mean_4=45.16%
+corruption      | acc
+----------------------------
+snow            | 36.1%
+glass_blur      | 44.7%
+defocus_blur    | 51.5%
+fog             | 48.3%
+epoch 14 | batch 200 | loss: 1.1667 | sigma=2.600
+epoch 14 | batch 400 | loss: 1.1473 | sigma=2.600
+epoch 14 | batch 600 | loss: 0.9824 | sigma=2.600
+--- EPOCH 14 FINISHED | AVG LOSS: 1.0555 | sigma=2.600 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=14 | sigma=2.600 | clean=45.30% | c10c_mean_4=44.52%
+corruption      | acc
+----------------------------
+snow            | 35.5%
+glass_blur      | 44.1%
+defocus_blur    | 50.7%
+fog             | 47.7%
+epoch 15 | batch 200 | loss: 1.1725 | sigma=2.800
+epoch 15 | batch 400 | loss: 0.9035 | sigma=2.800
+epoch 15 | batch 600 | loss: 1.0361 | sigma=2.800
+--- EPOCH 15 FINISHED | AVG LOSS: 1.0898 | sigma=2.800 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=15 | sigma=2.800 | clean=44.27% | c10c_mean_4=43.51%
+corruption      | acc
+----------------------------
+snow            | 34.9%
+glass_blur      | 43.3%
+defocus_blur    | 49.6%
+fog             | 46.3%
+epoch 16 | batch 200 | loss: 1.4056 | sigma=3.000
+epoch 16 | batch 400 | loss: 0.9667 | sigma=3.000
+epoch 16 | batch 600 | loss: 0.9244 | sigma=3.000
+--- EPOCH 16 FINISHED | AVG LOSS: 1.1088 | sigma=3.000 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=16 | sigma=3.000 | clean=44.07% | c10c_mean_4=42.98%
+corruption      | acc
+----------------------------
+snow            | 34.5%
+glass_blur      | 43.1%
+defocus_blur    | 49.2%
+fog             | 45.1%
+epoch 17 | batch 200 | loss: 1.2689 | sigma=3.200
+epoch 17 | batch 400 | loss: 1.5384 | sigma=3.200
+epoch 17 | batch 600 | loss: 0.9960 | sigma=3.200
+--- EPOCH 17 FINISHED | AVG LOSS: 1.1262 | sigma=3.200 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=17 | sigma=3.200 | clean=43.56% | c10c_mean_4=42.24%
+corruption      | acc
+----------------------------
+snow            | 34.1%
+glass_blur      | 42.5%
+defocus_blur    | 48.1%
+fog             | 44.3%
+epoch 18 | batch 200 | loss: 1.1311 | sigma=3.400
+epoch 18 | batch 400 | loss: 0.9200 | sigma=3.400
+epoch 18 | batch 600 | loss: 1.1900 | sigma=3.400
+--- EPOCH 18 FINISHED | AVG LOSS: 1.1581 | sigma=3.400 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=18 | sigma=3.400 | clean=43.29% | c10c_mean_4=42.06%
+corruption      | acc
+----------------------------
+snow            | 34.5%
+glass_blur      | 42.1%
+defocus_blur    | 47.5%
+fog             | 44.1%
+epoch 19 | batch 200 | loss: 1.0910 | sigma=3.600
+epoch 19 | batch 400 | loss: 1.0018 | sigma=3.600
+epoch 19 | batch 600 | loss: 1.1041 | sigma=3.600
+--- EPOCH 19 FINISHED | AVG LOSS: 1.1744 | sigma=3.600 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=19 | sigma=3.600 | clean=41.92% | c10c_mean_4=40.27%
+corruption      | acc
+----------------------------
+snow            | 33.2%
+glass_blur      | 40.8%
+defocus_blur    | 45.5%
+fog             | 41.6%
+epoch 20 | batch 200 | loss: 1.2029 | sigma=3.800
+epoch 20 | batch 400 | loss: 1.0367 | sigma=3.800
+epoch 20 | batch 600 | loss: 1.1597 | sigma=3.800
+--- EPOCH 20 FINISHED | AVG LOSS: 1.2028 | sigma=3.800 ---
+
+--- UNLEARNING PROGRESS ---
+epoch=20 | sigma=3.800 | clean=42.13% | c10c_mean_4=40.41%
+corruption      | acc
+----------------------------
+snow            | 33.8%
+glass_blur      | 41.3%
+defocus_blur    | 45.3%
+fog             | 41.3%
