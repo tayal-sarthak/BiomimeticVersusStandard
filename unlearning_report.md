@@ -2,7 +2,7 @@
 
 ## Intro
 
-This report follows Dr. Arslan’s suggestion to use anti biomimetic training as an unlearning tool. I start from a biomimetic trained checkpoint, then continue training using a reversed blur curriculum. I track clean accuracy and corruption robustness across epochs.
+This report follows the suggestion to use anti biomimetic training as an unlearning tool. I start from a biomimetic trained checkpoint, then continue training using a reversed blur curriculum. I track clean accuracy and corruption robustness across epochs.
 
 ## Motivation
 
